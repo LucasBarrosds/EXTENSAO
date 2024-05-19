@@ -1,83 +1,322 @@
-const button = document.querySelector("#calcular");
-const altura = document.getElementById('altura');
-const peso = document.getElementById('peso');
-const resultado = document.getElementById('resultado');
-const h3 = document.getElementById('h3');
-const p = document.getElementById('p');
-const tr1 = document.getElementById('tr1');
-const tr2 = document.getElementById('tr2');
-const tr3 = document.getElementById('tr3');
-const tr4 = document.getElementById('tr4');
-const tr5 = document.getElementById('tr5');
-const tr6 = document.getElementById('tr6');
-const div1 = document.getElementById('1');
-const div2 = document.getElementById('2');
-const div3 = document.getElementById('3');
-const div4 = document.getElementById('4');
+body {
+    background-image: url("https://i.pinimg.com/originals/e9/47/d9/e947d9855d5708cc08409cefbb396908.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+      }
+      
+.conteudo {
+    background-color: #fff; /* Cor de fundo branca */
+    padding: 20px; /* Espaçamento interno para o conteúdo */
+    border-radius: 10px; /* Borda arredondada */
+    border: solid black;
+}
 
+body {
+    background-position: top right; /* Posição da imagem (topo direito) */
+}
+      
+:root {
+    --primary-white: #ffffff;
+    --primary-color: #EFF3F5;
+    --primary-red: #ee0000;
+    --primary-text: #000000;
+}
+.img{
+    max-width: 100%;
+    max-height: 110%;
+}
+strong {
+    font-size: 18px;
+}
+.container {
+    height: 100%;
+    width: 70%;
+}
+body {
+    color:var(--primary-text);
+    background-color:rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: inherit;
+    zoom: 90%;
+}
 
-function calcularIMC(pesoValue, alturaValue) {
-    tr1.classList.remove("pintado")
-    tr2.classList.remove("pintado")
-    tr3.classList.remove("pintado")
-    tr4.classList.remove("pintado")
-    tr5.classList.remove("pintado")
-    tr6.classList.remove("pintado")
-    div1.classList.add("hidden");
-    div2.classList.add("hidden");
-    div3.classList.add("hidden");
-    div4.classList.add("hidden");
-    let imc;
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    if (alturaValue && pesoValue) {
-        imc = pesoValue /  (alturaValue * alturaValue);
-    } else {
-        alert('Por favor, preencha sua altura e peso.');
-        return
-    }
-
-    imc = imc.toFixed(2);
-
-    if (imc < 18.5) {
-        div1.classList.remove("hidden");
-    }else if (imc >= 18.5 && imc <= 24.9 ){
-        div2.classList.remove("hidden");
-    }else if(imc >= 25 && imc <= 29.9){
-        div3.classList.remove("hidden");
-    }else {
-        div4.classList.remove("hidden");
-    }
-
-    if (imc < 18.5) {
-        tr1.classList.add("pintado");
-        p.innerHTML = "Baixo Peso";
-    }else if (imc >= 18.5 && imc <= 24.9 ){
-        tr2.classList.add("pintado");
-        p.innerHTML = "Peso Normal";
-    }else if(imc >= 25 && imc <= 29.9){
-        tr3.classList.add("pintado");
-        p.innerHTML = "Excesso de Peso";
-    }else if(imc >= 30 && imc <= 34.9){
-        tr4.classList.add("pintado");
-        p.innerHTML = "Obesidade Grau I"
-    }else if(imc >= 35 && imc <= 39.9){
-        tr5.classList.add("pintado");
-        p.innerHTML = "Obesidade Grau II"
-    }else {
-        tr6.classList.add("pintado");
-        p.innerHTML = "Obesidade Mórbida"
-    } 
-
-    h3.innerHTML = imc;
-
-    resultado.classList.remove("hidden");
+nav {
+    position: fixed;
+    background-color: #ffffff;
     
 }
 
-button.addEventListener("click", (event) => {
-    event.preventDefault;
-    calcularIMC(parseFloat(peso.value), parseFloat(altura.value));
-    altura.value = '';
-    peso.value = '';
-})
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+}
 
+nav ul li {
+    display: inline;
+    
+}
+
+nav ul li a {
+    display: block;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 15px 20px;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.397);
+}
+
+nav ul li a:hover {
+    background-color: #555;
+    
+}
+
+footer {
+    background-color: #4b4b4b3b;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    margin-top: 25%;
+}
+
+.calculadora {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin-top: 25px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.1);
+    border: 2px solid #000000;
+}
+
+
+
+.form-imc {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+input {
+    border: 0;
+    border-radius: 1px;
+    height: 25px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+
+
+.peso input,
+.altura input {
+    border: 2px solid #e25454; 
+    border-radius: 5px; 
+    padding: 5px;
+    font-size: 16px; 
+}
+
+
+.peso label,
+.altura label {
+    font-weight: bold; 
+    margin-bottom: 5px; 
+}
+
+
+.calc-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.calc-button button {
+    width: 40%;
+    padding: 10px;
+    background-color: var(--primary-red);
+    color: var(--primary-white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabela {
+    width: auto;
+    margin-top: 20px;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #000000; 
+}
+
+
+.pintado {
+    background-color: var(--primary-red);
+    color: var(--primary-white);
+    border-radius: 1px;
+}
+
+.tabela tr {
+    border-bottom: 0.01px solid rgba(203, 19, 19, 0.1);
+}
+
+.td-1 {
+    margin-right: 500px;
+    padding: 0 200px 0 0;
+    text-align: left; 
+}
+
+.td-2{
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.table-header {
+    background-color: rgba(148, 148, 148, 0.459);
+}
+.cores {
+    color: var(--primary-red);
+    font-size: 30px;
+}
+.tit {
+    font-size: 100%;
+    color: var(--primary-red);
+}
+
+.th-1 {
+    padding: 12px;
+    border-top-left-radius: 5px;
+}
+
+.th-2 {
+    padding: 12px;
+    border-top-right-radius: 5px;
+}
+
+tbody {
+    background-color: var(--primary-white);
+}
+
+.resultado {
+    position: relative;
+    margin-left: 20px;
+}
+
+.bolinha {
+    position: absolute;
+    top: 0px;
+    left: -23px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+p {
+    max-width: 1000px; /* Defina o tamanho desejado */
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.center-site{
+max-width: 500px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    
+}
+img {
+    width: 60%;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: red;
+}
+footer {
+    background-color: #5d5d5d;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px;
+    font-size: 100%;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+footer a:hover {
+    color: #313131;
+}
+.redes-sociais {
+    list-style: none;
+    display: table;
+    margin: 0 auto !important;
+}
+.redes-sociais li {
+    display: inline-block;
+    float: left;
+    padding: 0;
+    margin-right: 10px;
+}
+.redes-sociais li:last-child {
+    margin-right: 0;
+}
+.redes-sociais li a {
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #313131;
+    color: #f7efef;
+    transition: 0.2s;
+}
+.redes-sociais li a:hover {
+    background: #e04a4a62;
+    color: #FFF;
+}
+.redes-sociais li a i {
+    line-height: 50px !important;
+}
